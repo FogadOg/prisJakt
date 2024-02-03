@@ -2,23 +2,25 @@ require 'nokogiri'
 require 'open-uri'
 
 module Scraper
-    class ZalandoScraper < Scraper
-
+    class ZalandoScraper < BaseScraper
+        def initialize(url)
+            super(url)
+            scrape()
+        end
         
-        def scrape(products, priceSelector, linkSelector, nameSelector, imageSelector)
+        def scrape
 
-            products.each do |product|
-                price=product.xpath(priceSelector).first
-                link=product.css(linkSelector)
-                name=product.css(nameSelector)
-                image=product.css(imageSelector)
-                
-
-                      
-                product=ScrapeData.new(link.attr("href"), image.attr("src"), name.text, price.text)
-                puts product
-            end
+            pageHtml=ScraperUtil.new(@doc)
+            products=pageHtml.getProducts("._5qdMrS.w8MdNG.cYylcv.BaerYO._75qWlu.iOzucJ.JT3_zV._Qe9k6")
+            
+            products.save(
+                '//section[@class="_0xLoFW _78xIQ-"]//span',
+                "._LM.JT3_zV.CKDt_l.CKDt_l.LyRfpJ",
+                ".sDq_FX.lystZ1.FxZV-M.HlZ_Tf.ZkIJC-.r9BRio.qXofat.EKabf7.nBq1-s._2MyPg2",
+                ".sDq_FX.lystZ1.FxZV-M._2Pvyxl.JT3_zV.EKabf7.mo6ZnF._1RurXL.mo6ZnF._7ZONEy"               
+            )
 
         end
+        
     end
 end

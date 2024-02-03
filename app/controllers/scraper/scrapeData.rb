@@ -12,9 +12,21 @@ module Scraper
             @name.to_s
         end
 
+        def getAttribute(attribute)
+            case attribute
+            when :link
+              return @link
+            when :image
+              return @image
+            when :name
+              return @name
+            when :price
+              return @price
+            else
+              raise ArgumentError, "Invalid attribute: #{attribute}"
+            end
+          end
+
 
     end
-
-
-
 end
