@@ -17,7 +17,7 @@ module Scraper
                 "._LM.JT3_zV.CKDt_l.CKDt_l.LyRfpJ",
                 ".sDq_FX.lystZ1.FxZV-M._2Pvyxl.JT3_zV.EKabf7.mo6ZnF._1RurXL.mo6ZnF._7ZONEy",               
                 ".sDq_FX.lystZ1.FxZV-M.HlZ_Tf.ZkIJC-.r9BRio.qXofat.EKabf7.nBq1-s._2MyPg2",
-                '//section[@class="_0xLoFW _78xIQ-"]//span',
+                "p.sDq_FX.lystZ1.FxZV-M.HlZ_Tf",
                 
                 )
 

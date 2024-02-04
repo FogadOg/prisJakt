@@ -20,12 +20,11 @@ module Scraper
 
             @element.each do |product|
                 link=product.css(linkSelector).attr("href")
-                name=product.css(nameSelector).text
                 image=product.css(imageSelector).attr("src")
-                price=(product.xpath(priceSelector).first).text
+                name=product.css(nameSelector).text
+                price=product.css(priceSelector).text
 
-                                      
-                product=ScrapeData.new(link, image, name, price).save
+                ScrapeData.new(link, image, name, price).save
             end
 
         end
