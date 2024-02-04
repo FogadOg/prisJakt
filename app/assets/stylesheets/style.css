@@ -5,5 +5,10 @@ textarea, select, input, button {
 :root{
     --secondary:#d3d3d3;
 }
-
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
 

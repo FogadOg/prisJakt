@@ -1,18 +1,36 @@
-.card{
+.topTitle{
+    font-weight: 700;
+}
+.bottomTitle{
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.productContainer{
+    margin: 2rem 0;
+}
+.products{
+    width: 100%;
+    display: flex;
+    overflow-x: scroll;
+}
+.product{
     margin: .7rem;
     width: 13rem;
 }
-
-.cardTopContainer{
-
-}
-.card img{
+.product img{
     width: 100%;
 }
-
-.cardBottomContainer{
+.productBottomContainer{
     padding: 1rem;
 }
-.cardBottomContainer p{
+.productBottomContainer p{
     font-size: .7rem;
+}
+@media (min-width:961px){
+
+    .products{
+        width: 961px;
+        overflow-x: scroll;
+    }
 }
