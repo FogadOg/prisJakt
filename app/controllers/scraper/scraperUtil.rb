@@ -8,29 +8,24 @@ module Scraper
 
         end
 
-        def size
-            return @size
-        end
 
         def getProducts(productSelector)
             products=@element.css(
                 productSelector
                 )
-            @size=products.length
             return ScraperUtil.new(products)
         end
 
-        def save(priceSelector, linkSelector, nameSelector, imageSelector)
+        def save(linkSelector, imageSelector, nameSelector, priceSelector)
 
             @element.each do |product|
-                price=product.xpath(priceSelector).first
-                link=product.css(linkSelector)
-                name=product.css(nameSelector)
-                image=product.css(imageSelector)
+                link=product.css(linkSelector).attr("href")
+                name=product.css(nameSelector).text
+                image=product.css(imageSelector).attr("src")
+                price=(product.xpath(priceSelector).first).text
 
                                       
-                product=ScrapeData.new(link.attr("href"), image.attr("src"), name.text, price.text)
-                puts product
+                product=ScrapeData.new(link, image, name, price).save
             end
 
         end
