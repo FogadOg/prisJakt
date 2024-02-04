@@ -7,7 +7,11 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "home/product" %>
-    <%= stylesheet_link_tag "home/index" %>
+    <%= stylesheet_link_tag "home/header" %>
+    <%= stylesheet_link_tag "home/style" %>
+
+    <%= stylesheet_link_tag "style" %>
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -16,6 +20,36 @@
   </head>
 
   <body>
+    <header>
+      <div class="header">
+        <div class="headerContainerTop headerContainer">
+          [logo here]
+        </div>
+        <div class="headerContainerBottom headerContainer">
+          <div class="categories">
+            <button>Electronics</button>
+            <button>Clothes</button>
+            <button>Home</button>
+            <button>Garden</button>
+            <button>Car</button>
+            <button>Sport & Hobbie</button>
+          </div>
+
+          <div class="searchBarContainer">
+            <form class="searchBar">
+              <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+              </button>
+              
+              <input type="text"/>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

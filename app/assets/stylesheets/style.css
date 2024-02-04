@@ -1,0 +1,9 @@
+textarea, select, input, button { 
+    outline: none; 
+}
+
+:root{
+    --secondary:#d3d3d3;
+}
+
+
