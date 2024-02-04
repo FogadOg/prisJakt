@@ -1,0 +1,12 @@
+.productContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    align-items:first baseline;
+    justify-content: left;
+
+}

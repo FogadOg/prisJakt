@@ -1,0 +1,21 @@
+
+<div class="productContainer">
+    <div class="products">
+
+        <% @products.each do |product| %>
+            <a href=<%= product.link%> class="card">
+                <div class="cardTopContainer">
+                    <img src=<%= product.image  %> />
+                </div>
+                <div class="cardBottomContainer">
+                    <p class="productName"><%= product.name  %></p>
+                    <p class="productPrice"><%= product.price  %></p>
+                </div>
+
+
+            </a>
+        <% end %>
+    </div>
+</div>
+
+
