@@ -5,5 +5,6 @@
 //= link home/product.css
 //= link home/style.css
 //= link home/header.css
+//= link home/details.css
 
 //= link style.css

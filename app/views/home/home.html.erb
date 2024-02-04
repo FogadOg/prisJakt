@@ -10,7 +10,7 @@
 
         <% @products.each do |product| %>
             <div>
-                <a href=<%= product.link%> class="card product">
+                <a href="<%= details_path(id: product.id)%>" class="card product">
                     <div class="productTopContainer">
                         <img src=<%= product.image  %> />
                     </div>

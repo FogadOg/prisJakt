@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get "/scrape", to:"scraper#index" 
 
   root "home#index"
+
+  get "product/:id", to: "home#show", as: "details"
   
   # Defines the root path route ("/")
   # root "posts#index"

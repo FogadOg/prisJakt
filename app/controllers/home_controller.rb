@@ -5,4 +5,9 @@ class HomeController < ApplicationController
         render "home"
     end
 
+    def show
+        @product=Product.find(params[:id])
+
+    end
+
 end
