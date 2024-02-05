@@ -10,13 +10,13 @@
     margin: 2rem 0;
 }
 .products{
-    width: 100%;
+    width: 20rem;
     display: flex;
     overflow-x: scroll;
 }
 .product{
     margin: .7rem;
-    width: 13rem;
+    width: 6rem;
 }
 .product img{
     width: 100%;
@@ -25,12 +25,25 @@
     padding: 1rem;
 }
 .productBottomContainer p{
-    font-size: .7rem;
+    font-size: .4rem;
 }
-@media (min-width:961px){
+
+@media (min-width:1205px){
+    .products{
+        width: 100%;
+    }
+    .product{
+        width: 13rem;
+    }
+    .productBottomContainer p{
+        font-size: .5rem;
+    }
+
+}
+@media (min-width:800px){
 
     .products{
-        width: 961px;
+        width: 800px;
         overflow-x: scroll;
     }
 }

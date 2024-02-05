@@ -10,6 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+# priceHistory: price, website, product
+# website: link, logo, priceHistoires
+# product: id, image, name, querySelector, priceHistories
+
 ActiveRecord::Schema[7.1].define(version: 2024_02_04_050530) do
   create_table "products", force: :cascade do |t|
     t.string "link"
