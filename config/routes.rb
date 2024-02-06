@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "product/:id", to: "home#show", as: "details"
+  get "search/:query", to: "home#search", as: "search"
   
   # Defines the root path route ("/")
   # root "posts#index"
