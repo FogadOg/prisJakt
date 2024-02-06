@@ -13,7 +13,7 @@ module Service
         end
 
         def incrementTerm(term)
-            dict=readFromFile
+            dict=readFile
 
             if dict.key?(term)
                 dict[term] += 1
@@ -24,8 +24,18 @@ module Service
 
         end
 
-        def readFromFile
-            return JSON.parse(File.read("idfCount.json"))
+        def readFile
+            return JSON.parse(File.read(@filePath))
+        end
+
+        def getIdfCount(term)
+            dict=readFile
+
+            if dict.key?(term)
+                return dict[term]
+            else
+                return 0
+            end
         end
 
 
