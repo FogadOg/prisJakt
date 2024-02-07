@@ -1,0 +1,17 @@
+<div class="searchResults">
+    <% @relatedProducts.each do |product| %>
+        <div>
+            <a href="<%= details_path(id: product.id)%>" class="card product">
+                <div class="productTopContainer">
+                    <img src=<%= product.image  %> />
+                </div>
+                <div class="productBottomContainer">
+                    <p class="productName"><%= product.name  %></p>
+                    <p class="productPrice"><%= product.price  %></p>
+                </div>
+
+
+            </a>
+        </div>
+    <% end %>
+</div>
