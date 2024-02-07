@@ -1,12 +1,14 @@
 module Search
     class TextProcess
-        def initialize(sentance)
-            @sentance=sentance
+        def initialize(sentence)
+            @sentence=sentence
+
         end
         
         def process()
-            removeSepcialChars=(@sentance.gsub!(/[^0-9A-Za-z]/, ' ')).gsub!('  ', ' ')
-            return removeSepcialChars.downcase
+            removeSepcialChars=@sentence.gsub!(/[^0-9A-Za-z]/, ' ')
+            turnUpperToLowerCase=removeSepcialChars.downcase
+            return turnUpperToLowerCase.gsub!('  ', ' ')
         end
     end
 end
