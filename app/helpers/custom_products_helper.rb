@@ -1,0 +1,2 @@
+module CustomProductsHelper
+end
