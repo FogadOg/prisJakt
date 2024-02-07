@@ -10,7 +10,11 @@ Rails.application.routes.draw do
 
   get "product/:id", to: "home#show", as: "details"
   get "search/:query", to: "home#search", as: "search"
-  
+
+
+  resources :custom_products, only: [:new, :create]
+
+
   # Defines the root path route ("/")
   # root "posts#index"
 end
