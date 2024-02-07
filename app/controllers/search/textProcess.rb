@@ -6,9 +6,13 @@ module Search
         end
         
         def process()
-            removeSepcialChars=@sentence.gsub!(/[^0-9A-Za-z]/, ' ')
-            turnUpperToLowerCase=removeSepcialChars.downcase
-            return turnUpperToLowerCase.gsub!('  ', ' ')
+            return unless @sentence
+
+            removeSpecialChars = @sentence.gsub(/[^0-9A-Za-z]/, ' ')
+            return unless removeSpecialChars
+        
+            turnUpperToLowerCase = removeSpecialChars.downcase
+            return turnUpperToLowerCase.gsub('  ', ' ')
         end
     end
 end
