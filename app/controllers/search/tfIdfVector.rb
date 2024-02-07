@@ -23,10 +23,7 @@ module Search
         magnitudeB = _euclideanNorm(otherTfIdfVector.vector)
 
         similarity=(dotProductA * dotProductB) / (magnitudeA * magnitudeB)
-        if similarity==NaN
-            return 0
-        end
-        return similarity
+        return similarity.nan? ? 0 : similarity
       end
   
       def _dotProduct(vectorA, vectorB)
