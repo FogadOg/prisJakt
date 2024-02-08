@@ -1,7 +1,14 @@
 class ScraperController < ApplicationController
     include ScraperHelper
     def index
-        Scraper::ZalandoScraper.new("https://www.zalando.no/sneakers/?q=air+jordan+1+mid")
+        searchTerms=[
+            "air jordan 1 mid"
+        ]
+        searchTerms.each do |searchTerm|
+            Scraper::ZalandoScraper.new("https://www.zalando.no/herre/?q=",searchTerm,"+")
+            Scraper::ZalandoScraper.new("https://www.zalando.no/dame/?q=",searchTerm,"+")
+
+        end
         
 
 
