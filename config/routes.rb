@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   root "home#index"
 
   get "product/:id", to: "home#show", as: "details"
-  get "search/:query", to: "home#search", as: "search"
+  get "search/:query", to: "search#search", as: "search"
 
 
   resources :custom_products, only: [:new, :create]
