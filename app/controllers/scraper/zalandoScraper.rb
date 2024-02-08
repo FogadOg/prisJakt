@@ -1,10 +1,7 @@
-require 'nokogiri'
-require 'open-uri'
-
 module Scraper
     class ZalandoScraper < BaseScraper
-        def initialize(url)
-            super(url)
+        def initialize(url, searchTerm, joiningSymbole)
+            super(url, searchTerm, joiningSymbole)
             scrape()
         end
         
