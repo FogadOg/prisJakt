@@ -2,13 +2,9 @@ class SearchController < ApplicationController
 
     def search
         @query=params[:query]
-        
 
-        processedQuery=processText(@query)
-        
-        queryTfIdf=Search::TfIdf.new(@query)
-        queryVector=Search::TfIdfVector.new()
-        queryVector.generateTfIdfVector(queryTfIdf, @query)
+        queryVector=TextProcessing::TfIdfVector.new().vectorForSearch(@query, @query)
+
         @relatedProducts=getRelatedProducts(queryVector)
         
     end
@@ -17,13 +13,10 @@ class SearchController < ApplicationController
         relatedProducts=[]
 
         Product.all.each do |product|
-            processedName=processText(product.name)
             
-            productTfIdf=Search::TfIdf.new(processedName)
-            prodcutVector=Search::TfIdfVector.new()
-            prodcutVector.generateTfIdfVector(productTfIdf, @query)
+            prodcutVector=TextProcessing::TfIdfVector.new().vectorForSearch(product.name, @query)
 
-            if prodcutVector.cosineSimilarity(queryVector)>0.08
+            if prodcutVector.cosineSimilarity(queryVector)>0.01
                 relatedProducts.append(product)
             end
         end   
@@ -32,9 +25,5 @@ class SearchController < ApplicationController
 
     end
 
-    def processText(text)
-        textPreprocess=Search::TextProcess.new(text)
-        return textPreprocess.process
-    end
 
 end
