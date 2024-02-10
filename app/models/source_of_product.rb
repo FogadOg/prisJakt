@@ -1,0 +1,2 @@
+class SourceOfProduct < ApplicationRecord
+end
