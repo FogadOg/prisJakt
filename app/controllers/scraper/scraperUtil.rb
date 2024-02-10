@@ -8,6 +8,10 @@ module Scraper
 
         end
 
+        def getLogo(cssSelector)
+            return @element.at_css(cssSelector)
+        end
+
 
         def getProducts(productSelector)
             products=@element.css(
@@ -15,16 +19,23 @@ module Scraper
                 )
             return ScraperUtil.new(products)
         end
+        
+        def processText(text)
+            textPreprocess=TextProcessing::TextProcess.new(text)
+            return textPreprocess.process
+        end
 
-        def save(linkSelector, imageSelector, nameSelector, priceSelector)
+        def save(linkSelector, imageSelector, nameSelector, priceSelector, logo)
 
-            @element.each do |product|
-                link=product.css(linkSelector).attr("href")
-                image=product.css(imageSelector).attr("src")
-                name=product.css(nameSelector).text
-                price=product.css(priceSelector).text
+            @element.each do |scrapeProduct|
+                link=scrapeProduct.css(linkSelector).attr("href")
+                image=scrapeProduct.css(imageSelector).attr("src")
+                name=scrapeProduct.css(nameSelector).text
+                price=scrapeProduct.css(priceSelector).text
+                
+                ClusterData.new(image, name, price, logo).index()
 
-                ScrapeData.new(link, image, name, price).save
+                
             end
 
         end

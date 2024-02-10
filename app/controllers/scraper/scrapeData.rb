@@ -1,15 +1,13 @@
 require_relative '../services/tfIdfService'
-require_relative '../search/textProcess'
+require_relative '../textprocessing/textProcess'
 
 module Scraper
   class ScrapeData
     attr_reader :link, :image, :name, :price
 
-    def initialize(link, image, name, price)
-      @link=link
+    def initialize(image, name)
       @image=image
       @name=name
-      @price=price
     end
     def to_s
         @name.to_s
@@ -32,10 +30,10 @@ module Scraper
 
     def save
       newProduct=Product.new(
-        link: link,
+        link: "https://google.com",
         image: image,
         name: name,
-        price: price
+        price: "1"
       )
       if newProduct.save
         puts "Product created successfully!"
@@ -47,7 +45,7 @@ module Scraper
     end
 
     def _addTermsToIdfCount(sentance)
-      textPreprocess=Search::TextProcess.new(sentance)
+      textPreprocess=TextProcessing::TextProcess.new(sentance)
       processedText=textPreprocess.process
 
       splitSentance=processedText.split
