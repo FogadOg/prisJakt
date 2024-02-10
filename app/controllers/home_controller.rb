@@ -1,4 +1,4 @@
-require_relative 'search/tfidf'
+require_relative 'textProcessing/tfidf'
 
 class HomeController < ApplicationController
 
@@ -9,6 +9,7 @@ class HomeController < ApplicationController
 
     def show
         @product=Product.find(params[:id])
+        @productSource=SourceOfProduct.where(productId:params[:id])
 
     end
 

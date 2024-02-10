@@ -5,116 +5,22 @@
     </div>
 
     <div class="productDistributors">
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
-        <div class="distributer">
-            <a href=<%= @product.link %> class="distributerDetails">
-                <div class="details">
-                    <img src="https://www.postnord.no/contentassets/f4c37103978a47b3850bb608bd03376c/zalando_960x297_90.jpg"/>
-                    <p><%= @product.name%></p>
-                </div>
-                <div class="price">
-                    <p><%= @product.price%></p>
-                </div>
-            </a>
-        </div>
+
+        <% @productSource.each do |productSource| %>
+            <div class="distributer">
+                <a href="" class="distributerDetails">
+                    <div class="details">
+                        <img src=<%= productSource.image%>/>
+                        <p><%= productSource.name%></p>
+                    </div>
+                    <div class="price">
+                        <p><%= productSource.price%></p>
+                    </div>
+                </a>
+            </div>
+        
+        <% end %>
+        
         
     </div>
 </div>
