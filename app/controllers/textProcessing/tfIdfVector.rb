@@ -12,6 +12,21 @@ module TextProcessing
           @vector.append(tfIdfScore)
         end
       end
+
+      def vectorForSearch(string, matchString)
+        string=processText(string)
+        matchString=processText(matchString)
+
+        tfIdf=TextProcessing::TfIdf.new(string)
+        vector=TextProcessing::TfIdfVector.new()
+        vector.generateTfIdfVector(tfIdf, matchString)
+        return vector
+      end
+      
+      def processText(text)
+        textPreprocess=TextProcessing::TextProcess.new(text)
+        return textPreprocess.process
+      end
   
       def cosineSimilarity(otherTfIdfVector)
         raise "vectors must be same size" unless @vector.length == otherTfIdfVector.length
