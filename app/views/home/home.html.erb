@@ -2,28 +2,10 @@
 
 
 
-
-<div class="productContainer">
-    <h3 class="topTitle">Top Text</h3>
-    <h5 class="bottomTitle">Bottom Text</h5>
-    <div class="products">
-
-        <% @products.each do |product| %>
-            <div>
-                <a href="<%= details_path(id: product.id)%>" class="card product">
-                    <div class="productTopContainer">
-                        <img src=<%= product.image  %> />
-                    </div>
-                    <div class="productBottomContainer">
-                        <p class="productName"><%= product.name  %></p>
-                    </div>
-
-
-                </a>
-            </div>
-        <% end %>
-    </div>
-</div>
+<%= render partial: "product", locals: { product: @product, topText:"Top Text", bottomText:"Bottom Text" } %>
+<%= render partial: "product", locals: { product: @product, topText:"Top Text", bottomText:"Bottom Text" } %>
+<%= render partial: "product", locals: { product: @product, topText:"Top Text", bottomText:"Bottom Text" } %>
+<%= render partial: "product", locals: { product: @product, topText:"Top Text", bottomText:"Bottom Text" } %>
 
 
 
