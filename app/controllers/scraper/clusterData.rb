@@ -1,10 +1,11 @@
 module Scraper
     class ClusterData
-        def initialize(image, name, price, logo)
+        def initialize(image, name, price, logo, category)
             @image=image
             @name=name
             @price=price
             @logo=logo
+            @category=category
 
             index()
 
@@ -16,13 +17,13 @@ module Scraper
             scrapeVector=scrapeVector.vectorForSearch(@name, @name)
 
             if Product.count.zero?
-                ScrapeData.new(@image, @name).save
+                ScrapeData.new(@image, @name, @category).save
             end
-            loopOverProductModel()
+            loopOverProductModel(scrapeVector)
             
         end
 
-        def loopOverProductModel
+        def loopOverProductModel(scrapeVector)
             Product.all.each do |product|
                 
                 prodcutVector=TextProcessing::TfIdfVector.new()
@@ -35,7 +36,7 @@ module Scraper
                
                 else
                     if !isProductInDataBase(@image.value)
-                        ScrapeData.new(@image, @name).save
+                        ScrapeData.new(@image, @name, @category).save
                     
                     end
                 end

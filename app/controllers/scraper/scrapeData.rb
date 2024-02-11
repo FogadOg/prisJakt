@@ -3,11 +3,12 @@ require_relative '../textprocessing/textProcess'
 
 module Scraper
   class ScrapeData
-    attr_reader :link, :image, :name, :price
+    attr_reader :image, :name, :category
 
-    def initialize(image, name)
+    def initialize(image, name, category)
       @image=image
       @name=name
+      @category=category
     end
     def to_s
         @name.to_s
@@ -15,14 +16,12 @@ module Scraper
 
     def getAttribute(attribute)
       case attribute
-      when :link
-        return @link
       when :image
         return @image
       when :name
         return @name
-      when :price
-        return @price
+      when :category
+        return @category
       else
         raise ArgumentError, "Invalid attribute: #{attribute}"
       end
@@ -30,10 +29,9 @@ module Scraper
 
     def save
       newProduct=Product.new(
-        link: "https://google.com",
         image: image,
         name: name,
-        price: "1"
+        category: category
       )
       if newProduct.save
         puts "Product created successfully!"
