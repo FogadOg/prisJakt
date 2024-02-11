@@ -1,0 +1,18 @@
+<div class="productContainer">
+    <h3 class="topTitle"><%=topText%></h3>
+    <h5 class="bottomTitle"><%=bottomText%></h5>
+    <div class="products">
+        <% @products.each do |product| %>
+            <div>
+                <a href="<%= details_path(id: product.id)%>" class="card product">
+                    <div class="productTopContainer">
+                        <img src="<%= product.image %>" />
+                    </div>
+                    <div class="productBottomContainer">
+                        <p class="productName"><%= product.name %></p>
+                    </div>
+                </a>
+            </div>
+        <% end %>
+    </div>
+</div>
