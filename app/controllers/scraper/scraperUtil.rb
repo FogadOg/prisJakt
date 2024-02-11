@@ -25,7 +25,7 @@ module Scraper
             return textPreprocess.process
         end
 
-        def save(linkSelector, imageSelector, nameSelector, priceSelector, logo)
+        def save(linkSelector, imageSelector, nameSelector, priceSelector, logo, category)
 
             @element.each do |scrapeProduct|
                 link=scrapeProduct.css(linkSelector).attr("href")
@@ -33,7 +33,7 @@ module Scraper
                 name=scrapeProduct.css(nameSelector).text
                 price=scrapeProduct.css(priceSelector).text
                 
-                ClusterData.new(image, name, price, logo, "shoes")
+                ClusterData.new(image, name, price, logo, category)
 
                 
             end
