@@ -6,6 +6,8 @@ module Scraper
             @price=price
             @logo=logo
 
+            index()
+
         end
         
         def index()
@@ -16,7 +18,11 @@ module Scraper
             if Product.count.zero?
                 ScrapeData.new(@image, @name).save
             end
+            loopOverProductModel()
+            
+        end
 
+        def loopOverProductModel
             Product.all.each do |product|
                 
                 prodcutVector=TextProcessing::TfIdfVector.new()
@@ -24,7 +30,7 @@ module Scraper
 
                 similarity=prodcutVector.cosineSimilarity(scrapeVector)
 
-                if similarity>2.5
+                if similarity>0.005
                     saveAddProductSource(product.id, @name, @price, @logo)
                
                 else

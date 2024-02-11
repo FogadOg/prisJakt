@@ -6,7 +6,7 @@ textarea, select, input, button {
     --secondary:#d3d3d3;
 }
 main{
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
     overflow: hidden;
