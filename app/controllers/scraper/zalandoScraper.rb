@@ -19,7 +19,7 @@ module Scraper
                 ".sDq_FX.lystZ1.FxZV-M.HlZ_Tf.ZkIJC-.r9BRio.qXofat.EKabf7.nBq1-s._2MyPg2",
                 "span.sDq_FX.lystZ1",
                 logo
-                
+                "clothes"
                 )
 
         end

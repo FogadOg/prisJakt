@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   get "product/:id", to: "home#show", as: "details"
   get "search", to: "search#search", as: "search"
+  get "category", to: "category_page#category", as: "category"
 
 
   resources :custom_products, only: [:new, :create]

@@ -31,12 +31,13 @@ module Scraper
 
                 similarity=prodcutVector.cosineSimilarity(scrapeVector)
 
-                if similarity>0.005
+                if similarity>1.5
                     saveAddProductSource(product.id, @name, @price, @logo)
                
                 else
                     if !isProductInDataBase(@image.value)
                         ScrapeData.new(@image, @name, @category).save
+                        saveAddProductSource(product.id, @name, @price, @logo)
                     
                     end
                 end
