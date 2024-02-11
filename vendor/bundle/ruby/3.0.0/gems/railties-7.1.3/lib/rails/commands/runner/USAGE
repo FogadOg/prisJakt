@@ -18,5 +18,4 @@ Examples:
     You can also use the runner command as a shebang line for your executables:
 
         #!/usr/bin/env <%= File.expand_path(executable) %>
-        Product.all.each { |p| p.price *= 2 ; p.save! }
 <% end -%>
