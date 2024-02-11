@@ -1,8 +1,8 @@
 require_relative '../services/tfIdfService'
 require_relative '../textprocessing/textProcess'
 
-module Scraper
-  class ScrapeData
+module ScraperComponent
+  class ProductData
     attr_reader :image, :name, :category
 
     def initialize(image, name, category)
@@ -47,15 +47,16 @@ module Scraper
       processedText=textPreprocess.process
 
       splitSentance=processedText.split
-      jsonService=Service::TfIdfService.new("idfCount.json")
-
       removedDuplicateWords=splitSentance.uniq
+
+      jsonService=Service::TfIdfService.new("idfCount.json")
 
       removedDuplicateWords.each do |word|
         jsonService.incrementTerm(word)
       end
 
     end
+
 
 
   end

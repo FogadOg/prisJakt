@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-module Scraper
+module ScraperComponent
     class ScraperUtil
         def initialize(htmlElement)
             @element=htmlElement
