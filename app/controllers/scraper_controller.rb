@@ -5,8 +5,8 @@ class ScraperController < ApplicationController
             "air jordan 1 mid"
         ]
         searchTerms.each do |searchTerm|
-            Scraper::ZalandoScraper.new("https://www.zalando.no/herre/?q=",searchTerm,"+")
-            Scraper::ZalandoScraper.new("https://www.zalando.no/dame/?q=",searchTerm,"+")
+            ScraperComponent::Scraper::ZalandoScraper.new("https://www.zalando.no/herre/?q=",searchTerm,"+")
+            ScraperComponent::Scraper::ZalandoScraper.new("https://www.zalando.no/dame/?q=",searchTerm,"+")
 
         end
         

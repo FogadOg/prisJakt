@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 
-module Scraper
+module ScraperComponent::Scraper
   class BaseScraper
     def initialize(url, searchTerm, joiningSymbole)
       @searchTerm = searchTerm
