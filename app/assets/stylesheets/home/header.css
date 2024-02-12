@@ -12,7 +12,8 @@ header{
     justify-content: center;
 }
 .headerContainerBottom{
-    gap: 10rem;
+    gap: 1rem;
+    display: grid;
 }
 .categories{
     display: flex;
@@ -58,4 +59,10 @@ header{
 }
 
 
+@media (min-width:801px){
+    .headerContainerBottom{
+        gap: 10rem;
+        display: flex;
+    }
 
+}
