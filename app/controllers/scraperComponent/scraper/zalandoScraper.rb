@@ -1,7 +1,7 @@
 module ScraperComponent::Scraper
     class ZalandoScraper < BaseScraper
-        def initialize(url, searchTerm, joiningSymbole)
-            super(url, searchTerm, joiningSymbole)
+        def initialize(url, searchTerm)
+            super(url, searchTerm)
             scrape()
         end
         
