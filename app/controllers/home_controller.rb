@@ -1,4 +1,4 @@
-require_relative 'textProcessing/tfidf'
+require_relative 'textProcessing/tfIdf'
 
 class HomeController < ApplicationController
 

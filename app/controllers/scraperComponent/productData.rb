@@ -1,5 +1,5 @@
 require_relative '../services/tfIdfService'
-require_relative '../textprocessing/textProcess'
+require_relative '../textProcessing/textProcess'
 
 module ScraperComponent
   class ProductData

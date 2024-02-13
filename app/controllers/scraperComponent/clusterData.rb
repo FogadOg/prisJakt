@@ -38,18 +38,18 @@ module ScraperComponent
 
         def addProduct(productId, similarity)
             if similarity>1.5
-                saveProductSource(product.id, @name, @price, @logo)
+                saveProductSource(product.id)
            
             else
                 if !isProductInDataBase(@image.value)
-                    addProductAndSource()
+                    addProductAndSource(productId)
                 end
             end
         end
 
-        def addProductAndSource
+        def addProductAndSource(productId)
             ProductData.new(@image, @name, @category).save
-            saveProductSource(product.id, @name, @price, @logo)
+            saveProductSource(productId)
         end
 
 
@@ -57,12 +57,12 @@ module ScraperComponent
             return Product.exists?(image: image)
         end
 
-        def saveProductSource(productId, name, price, logo)
+        def saveProductSource(productId)
             SourceOfProduct.new(
                 productId:productId, 
-                name:name, 
-                price:price,
-                image:logo
+                name:@name, 
+                price:@price,
+                image:@logo
             ).save
 
         end
