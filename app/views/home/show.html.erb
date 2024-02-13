@@ -25,3 +25,7 @@
     </div>
 </div>
 
+<%= javascript_tag do %>
+  var priceTuples = <%= raw @priceRecord.to_json %>;
+  console.log(priceTuples);
+<% end %>
