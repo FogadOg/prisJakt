@@ -38,7 +38,7 @@ module ScraperComponent
 
         def addProduct(productId, similarity)
             if similarity>1.5
-                saveProductSource(product.id)
+                saveProductSource(productId)
            
             else
                 if !isProductInDataBase(@image.value)
@@ -64,6 +64,7 @@ module ScraperComponent
                 price:@price,
                 image:@logo
             ).save
+            PriceRecord.new(ProductId:productId,price:@price).save
 
         end
         
