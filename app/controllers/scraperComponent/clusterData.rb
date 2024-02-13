@@ -64,7 +64,7 @@ module ScraperComponent
                 price:@price,
                 image:@logo
             ).save
-            PriceRecord.new(ProductId:productId,price:@price).save
+            PriceRecord.new(productId:productId,price:@price, date: Date.today).save
 
         end
         

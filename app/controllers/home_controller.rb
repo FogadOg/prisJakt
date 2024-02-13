@@ -8,8 +8,11 @@ class HomeController < ApplicationController
     end
 
     def show
-        @product=Product.find(params[:id])
-        @productSource=SourceOfProduct.where(productId:params[:id])
+        productId=params[:id]
+        @product=Product.find(productId)
+        @priceRecord=PriceRecord.where(productId: productId).pluck(:productId, :price, :date)
+
+        @productSource=SourceOfProduct.where(productId:productId)
 
     end
 
