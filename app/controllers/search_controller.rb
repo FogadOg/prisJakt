@@ -1,8 +1,14 @@
 class SearchController < ApplicationController
     def search
+
       @query = params[:query]
-      queryVector = TextProcessing::TfIdfVector.new().vectorForSearch(@query, @query)
-      @relatedProducts = getRelatedProducts(queryVector)
+      if @query === ""
+        redirect_to root_path
+      else
+        queryVector = TextProcessing::TfIdfVector.new().vectorForSearch(@query, @query)
+        @relatedProducts = getRelatedProducts(queryVector)
+
+      end
     end
   
     private
