@@ -24,8 +24,119 @@
         
     </div>
 </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .graph-container {
+            width: 600px;
+            height: 400px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
 
-<%= javascript_tag do %>
-  var priceTuples = <%= raw @priceRecord.to_json %>;
-  console.log(priceTuples);
-<% end %>
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2px;
+        }
+    </style>
+<div class="graph-container"></div>
+<script>
+    class ReformatData {
+        constructor(arrays) {
+            this.groupedArrays = this.groupArraysByDate(arrays);
+
+            for (let date in this.groupedArrays) {
+                let average = this.calculateAverage(this.groupedArrays[date]);
+                console.log(`Date: ${date}, Average: ${average.toFixed(2)}`);
+            }
+        }
+
+        groupArraysByDate(arrays) {
+            let groupedArrays = {};
+            arrays.forEach(array => {
+                let date = array[array.length - 1];
+                if (!groupedArrays[date]) {
+                    groupedArrays[date] = [];
+                }
+                groupedArrays[date].push(array);
+            });
+            return groupedArrays;
+        }
+
+        calculateAverage(arrays) {
+            let sum = 0;
+            arrays.forEach(array => {
+                let value = parseFloat(array[1].replace(/[^\d.,]/g, '').replace(',', '.')); // Extract numeric value from the second element
+                if (!isNaN(value)) {
+                    sum += value;
+                }
+            });
+            return sum / arrays.length;
+        }
+    }
+
+    class RenderGraph {
+        constructor(data) {
+            this.data = data;
+            this.container = this.setUpContainer();
+            this.setUpScales();
+            this.line = this.defineLine();
+            this.drawLine();
+            this.drawXAxis();
+            this.drawYAxis();
+        }
+
+        setUpContainer() {
+            return d3.select('.graph-container');
+        }
+
+        setUpScales() {
+            this.x = d3.scaleBand()
+                .domain(this.data.map(d => d.date))
+                .range([0, this.container.node().offsetWidth]);
+
+            this.y = d3.scaleLinear()
+                .domain([0, d3.max(this.data, d => d.average)])
+                .nice()
+                .range([this.container.node().offsetHeight, 0]);
+        }
+
+        defineLine() {
+            return d3.line()
+                .x(d => this.x(d.date))
+                .y(d => this.y(d.average));
+        }
+
+        drawLine() {
+            this.container.append('svg')
+                .attr('width', this.container.node().offsetWidth)
+                .attr('height', this.container.node().offsetHeight)
+                .append('path')
+                .datum(this.data)
+                .attr('class', 'line')
+                .attr('d', this.line);
+        }
+
+        drawXAxis() {
+            this.container.append('g')
+                .attr('class', 'x-axis')
+                .attr('transform', `translate(0,${this.container.node().offsetHeight})`)
+                .call(d3.axisBottom(this.x));
+        }
+
+        drawYAxis() {
+            this.container.append('g')
+                .attr('class', 'y-axis')
+                .call(d3.axisLeft(this.y));
+        }
+    }
+
+    let data = [
+        { date: '2024-02-13', average: 1212.51 },
+        { date: '2024-02-14', average: 1153.25 }
+    ];
+
+    let graph = new RenderGraph(data);
+
+</script>
+
