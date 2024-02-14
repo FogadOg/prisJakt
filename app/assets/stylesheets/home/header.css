@@ -21,7 +21,17 @@ header{
     justify-content: center;
     gap: .8rem;
 }
-.categories button{
+.category {
+    position: relative;
+}
+.sub-categories {
+    position: absolute;
+    background: white;
+    /* Om den trenger mer plass så tar den det*/
+    min-width: 100%;
+    border: 1px solid black;
+}
+.categories .category button{
     font-weight: 600;
     font-size: .8rem;
     background-color: transparent;

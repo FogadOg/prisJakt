@@ -1,0 +1,13 @@
+<!--* Can use keyboard to choose sub category -->
+<!--! Can't use keyboard to choose category -->
+
+<div class="category" data-controller="dropdown" data-action="focusout->dropdown#hideContent">
+  <button data-action="click->dropdown#showContent "><%= name %></button>
+
+  <div hidden data-dropdown-target="content" class="sub-categories">
+    <% sub_categories.each do |name| %>
+      <%= render "layouts/nav/sub_category", name: name %>
+    <% end %>
+  </div>
+
+</div>
