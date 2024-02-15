@@ -10,7 +10,7 @@ class HomeController < ApplicationController
     def show
         productId=params[:id]
         @product=Product.find(productId)
-        @priceRecord=PriceRecord.where(productId: productId).pluck(:productId, :price, :date)
+        @priceRecords=PriceRecord.where(productId: productId).pluck(:price, :date)
 
         @productSource=SourceOfProduct.where(productId:productId)
 
