@@ -10,7 +10,7 @@
             <div class="distributer">
                 <a href="" class="distributerDetails">
                     <div class="details">
-                        <img src=<%= productSource.image%>/>
+                        <img src="<%= productSource.image%>"/>
                         <p><%= productSource.name%></p>
                     </div>
                     <div class="price">
@@ -25,31 +25,38 @@
     </div>
 </div>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <style>
-        .graph-container {
-            width: 600px;
-            height: 400px;
-            border: 1px solid #ccc;
-            position: relative;
-        }
 
-        .line {
-            fill: none;
-            stroke: steelblue;
-            stroke-width: 2px;
-        }
-    </style>
-<div class="graph-container"></div>
+<div class="grahpContainer">
+    <h1>
+        Price Change
+    </h1>
+    <div class="graph"></div>
+</div>
+
 <script>
     class ReformatData {
         constructor(arrays) {
+            this.dataset=[]
+
+            this.dataset.push({ date: this.getDayOfWeek('2024-02-13'), average: 1212.51 })
+            this.dataset.push({ date: this.getDayOfWeek('2024-02-14'), average: 1153.25 })
             this.groupedArrays = this.groupArraysByDate(arrays);
 
             for (let date in this.groupedArrays) {
-                let average = this.calculateAverage(this.groupedArrays[date]);
-                console.log(`Date: ${date}, Average: ${average.toFixed(2)}`);
+                let average = this.calculateAverage(this.groupedArrays[date]); 
+
+                this.dataset.push({
+                    date:this.getDayOfWeek(date),
+                    average: average
+                })
             }
         }
+
+        getDayOfWeek(date) {
+            const dayOfWeek = new Date(date).getDay();    
+            return isNaN(dayOfWeek) ? null : 
+                ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+            }
 
         groupArraysByDate(arrays) {
             let groupedArrays = {};
@@ -82,12 +89,10 @@
             this.setUpScales();
             this.line = this.defineLine();
             this.drawLine();
-            this.drawXAxis();
-            this.drawYAxis();
         }
 
         setUpContainer() {
-            return d3.select('.graph-container');
+            return d3.select('.graph');
         }
 
         setUpScales() {
@@ -120,7 +125,6 @@
         drawXAxis() {
             this.container.append('g')
                 .attr('class', 'x-axis')
-                .attr('transform', `translate(0,${this.container.node().offsetHeight})`)
                 .call(d3.axisBottom(this.x));
         }
 
@@ -131,12 +135,10 @@
         }
     }
 
-    let data = [
-        { date: '2024-02-13', average: 1212.51 },
-        { date: '2024-02-14', average: 1153.25 }
-    ];
+    let dataset = new ReformatData(<%= raw @priceRecords.to_json %>)
+    console.log(dataset.dataset)
 
-    let graph = new RenderGraph(data);
+    let graph = new RenderGraph(dataset.dataset);
 
 </script>
 
