@@ -1,10 +1,8 @@
 require_relative 'textProcessing/tfIdf'
-
-class HomeController < ApplicationController
-
+# ? Wtf er tfIDf?
+class ProductsController < ApplicationController
     def index
         @products=Product.all
-        render "home"
     end
 
     def show
