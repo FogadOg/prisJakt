@@ -6,14 +6,17 @@ Rails.application.routes.draw do
   # get "up" => "rails/health#show", as: :rails_health_check
   get "/scrape", to:"scraper#index" 
 
-  root "home#index"
-
-  get "product/:id", to: "home#show", as: "details"
   get "search", to: "search#search", as: "search"
   get "category", to: "category_page#category", as: "category"
 
 
+  # root "home#index"
+  # get "product/:id", to: "home#show", as: "details"
+  resources :products, only: [:index, :show]
+  root "products#index"
+
   resources :custom_products, only: [:new, :create]
+
 
 
   # Defines the root path route ("/")
