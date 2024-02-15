@@ -38,16 +38,30 @@
     font-weight: 700;
 }
 .details img{
-    width: 6rem;
+    width: 4rem;
 }
 .details p{
     font-size: .6rem;
 }
+
+.grahpContainer{
+    border: 2px solid #d3d3d3;
+    border-radius: 2rem;
+    padding: 2rem;
+}
+.graph {
+    height: 400px;
+    position: relative;
+}
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+}
 @media (min-width:801px){
     .productDetails{
         display: flex;
-        height: 41rem;
-
+        height: 32rem;
     }
 
 }
