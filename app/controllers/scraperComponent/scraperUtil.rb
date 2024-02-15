@@ -9,7 +9,7 @@ module ScraperComponent
         end
 
         def getLogo(cssSelector)
-            return @element.at_css(cssSelector)
+            return @element.at_css(cssSelector).attr("href")
         end
 
 
