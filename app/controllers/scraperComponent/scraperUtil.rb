@@ -33,7 +33,7 @@ module ScraperComponent
                 name=scrapeProduct.css(nameSelector).text
                 price=scrapeProduct.css(priceSelector).text
                 
-                ClusterData.new(image, name, price, logo, category)
+                ProcessProduct.new(image, name, price, logo, category)
 
                 
             end
