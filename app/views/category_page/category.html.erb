@@ -1,16 +1,4 @@
 <div class="searchResults">
-    <% @products.each do |product| %>
-        <div>
-            <a href="<%= details_path(id: product.id)%>" class="card product">
-                <div class="productTopContainer">
-                    <img src=<%= product.image  %> />
-                </div>
-                <div class="productBottomContainer">
-                    <p class="productName"><%= product.name  %></p>
-                </div>
+  <%= render @products %>
 
-
-            </a>
-        </div>
-    <% end %>
 </div>
