@@ -21,6 +21,27 @@
 .product img{
     width: 100%;
 }
+
+.priceChangeDirection{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+    margin: .5rem 1rem;
+    border-radius: .5rem;
+    border: 1px solid #dedede;
+    background-color: #d3d3d3;
+    padding: .1rem .4rem;
+    position: absolute;
+
+}
+.priceChangeDirection.increase{
+    color: red;
+}
+.priceChangeDirection.decrease{
+    color: green;
+}
+
 .productBottomContainer{
     padding: 1rem;
 }
