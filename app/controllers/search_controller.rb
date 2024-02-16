@@ -1,6 +1,5 @@
 class SearchController < ApplicationController
     def search
-
       @query = params[:query]
       if @query === ""
         redirect_to root_path
