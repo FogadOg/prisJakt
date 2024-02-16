@@ -10,12 +10,11 @@ Rails.application.routes.draw do
   get "category", to: "category_page#category", as: "category"
 
 
-  # root "home#index"
-  # get "product/:id", to: "home#show", as: "details"
+  resources :custom_products, only: [:new, :create]
   resources :products, only: [:index, :show]
+  resources :filetered_products, only: [:show]
   root "products#index"
 
-  resources :custom_products, only: [:new, :create]
 
 
 
