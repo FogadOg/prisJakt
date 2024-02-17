@@ -15,8 +15,12 @@ module ScraperComponent
         end
         
         def startProcess()
-            if Product.count.zero?
-                ProductData.new(@image, @name, @category).save
+            if Product.count.zero?                
+                Product.new(
+                    name: @name,
+                    image: @image,
+                    categories: [@category]
+                ).save
             end
             loopOverProductModel()
             
@@ -42,7 +46,7 @@ module ScraperComponent
                         newProduct = Product.new(
                             name: @name,
                             image: @image,
-                            category: @category
+                            categories: [@category]
                         )
                         newProduct.save
                         
