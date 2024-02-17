@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :custom_products, only: [:new, :create]
   resources :products, only: [:index, :show]
-  resources :filetered_products, only: [:show]
+  resource :filetered_products, only: [:show]
   root "products#index"
 
 
