@@ -27,38 +27,55 @@ module ScraperComponent
 
                 prodcutVector = product.searchVector(@name)
                 similarity = prodcutVector.cosineSimilarity(@tfIdfVector)
+                
+                if similarity > 1
+                    product.saveProductSource(
+                        @name,
+                        @price,
+                        @logo,
+                        @link
+                    )
 
-                if similarity > 1.5
-                    saveProductSource(product.id)
                 else
                     if !isProductInDataBase(@image.value)
-                        addProductAndSource(product.id)
+                        _addTermsToIdfCount(@name)
+                        newProduct = Product.new(
+                            name: @name,
+                            image: @image,
+                            category: @category
+                        )
+                        newProduct.save
+                        
+                        newProduct.saveProductSource(
+                            @name,
+                            @price,
+                            @logo,
+                            @link
+                        )
                     end
                 end
 
             end
         end
+
+        def _addTermsToIdfCount(sentance)
+            textPreprocess=TextProcessing::TextProcess.new(sentance)
+            processedText=textPreprocess.process
+      
+            splitSentance=processedText.split
+            removedDuplicateWords=splitSentance.uniq
+      
+            jsonService=Service::TfIdfService.new("idfCount.json")
+      
+            removedDuplicateWords.each do |word|
+              jsonService.incrementTerm(word)
+            end
+      
+          end
         
         def isProductInDataBase(image)
             return Product.exists?(image: image)
-        end
-
-        def addProductAndSource(productId)
-            ProductData.new(@image, @name, @category).save
-            saveProductSource(productId)
-        end
-
-        def saveProductSource(productId)
-            SourceOfProduct.new(
-                productId:productId, 
-                name:@name, 
-                price:@price,
-                image:@logo
-            ).save
-            PriceRecord.new(productId:productId,price:@price, date: Date.today).save
-
-        end
-        
+        end        
 
     end
 end
