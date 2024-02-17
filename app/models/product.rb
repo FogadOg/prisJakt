@@ -37,6 +37,9 @@ class Product < ApplicationRecord
 
     def priceChange
         priceRecords=PriceRecord.where(productId: id)
+        if priceRecords == []
+            return 0
+        end
 
         oldestRecord = priceRecords.order(date: :asc).first
         oldPrice=extractDigits(oldestRecord.price)

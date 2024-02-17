@@ -15,9 +15,4 @@ Rails.application.routes.draw do
   resource :filetered_products, only: [:show]
   root "products#index"
 
-
-
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end
