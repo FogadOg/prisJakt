@@ -1,6 +1,9 @@
 source "https://rubygems.org"
 
-ruby "3.1.4"
+ruby "3.2.3"
+
+# Showing price
+gem "chartkick"
 
 gem 'bcrypt'
 
