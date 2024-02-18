@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   get "search", to: "search#search", as: "search"
   get "category", to: "category_page#category", as: "category"
 
-  get '/signup', to: 'signup#new'
-  delete '/logout', to: 'signup#destroy'
-  post '/signup', to: 'signup#create'
+  get '/login', to: 'login#new'
+  delete '/logout', to: 'login#destroy'
+  post '/login', to: 'login#create'
 
   get '/signup', to: 'signup#new'
   post '/signup', to: 'signup#create'
