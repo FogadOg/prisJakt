@@ -26,8 +26,47 @@
           <%= text_field_tag :search, params[:search], placeholder: "Search" %>
         <% end %>
       </div>
+      <% if session[:user_id] %>
+        <% user = User.find_by(id: session[:user_id]) %>
+        <% if user %>
+          <%= link_to 'Logout', logout_path, id: 'logout-link' %>
+        <% end %>
+      <% end %>
+
+      <% unless session[:user_id] %>
+        <%= link_to 'Login', login_path, type: "button", class: "btn btn-primary" %>
+      <% end %>
 
     </div>
 
+
   </div>
 </header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const logoutLink = document.getElementById('logout-link');
+    if (logoutLink) {
+      logoutLink.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch('/logout', {
+          method: 'DELETE',
+          headers: {
+            'X-CSRF-Token': token
+          }
+        })
+        .then(response => {
+          if (response.redirected) {
+            window.location.href = response.url;
+          }
+        })
+        .catch(error => {
+          console.error('Error logging out:', error);
+        });
+      });
+    }
+  });
+</script>
