@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
         end
 
 
-        @productSource=SourceOfProduct.where(productId:product_id)
+        @productSource=@product.source_of_products
 
     end
 

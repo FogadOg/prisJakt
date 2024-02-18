@@ -38,7 +38,7 @@ class Product < ApplicationRecord
     end
 
     def priceChange
-        priceRecords=PriceRecord.where(productId: id)
+        priceRecords=price_records
         if priceRecords == []
             return 0
         end
