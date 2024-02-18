@@ -6,15 +6,14 @@ class ProductsController < ApplicationController
     end
 
     def show
-        productId=params[:id]
-        @product=Product.find(productId)
-        @price_records=PriceRecord.where(productId: productId).pluck(:date, :price)
-        @price_records = PriceRecord.where(productId: productId).map do |record|
+        product_id=params[:id]
+        @product=Product.find(product_id)
+        @price_records = @product.price_records.map do |record|
             [ record[:date].strftime("%Y-%m-%d"), record[:price].sub("\u00A0", "")]
         end
 
 
-        @productSource=SourceOfProduct.where(productId:productId)
+        @productSource=SourceOfProduct.where(productId:product_id)
 
     end
 
