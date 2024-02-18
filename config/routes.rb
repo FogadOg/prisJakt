@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get "search", to: "search#search", as: "search"
   get "category", to: "category_page#category", as: "category"
 
+  get '/signup', to: 'signup#new'
+  delete '/logout', to: 'signup#destroy'
+  post '/signup', to: 'signup#create'
+
+  get '/signup', to: 'signup#new'
+  post '/signup', to: 'signup#create'
 
   resources :custom_products, only: [:new, :create]
   resources :products, only: [:index, :show]
