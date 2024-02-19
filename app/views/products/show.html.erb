@@ -25,5 +25,6 @@
     </div>
 </div>
 
-<%= line_chart @price_records %>
+<!-- *docs: https://chartkick.com-->
+<%= line_chart @price_records, title: "Pris historie", xtitle:"Dato", ytitle:"Pris", thousands:" ", suffix:" kr" %>
 
