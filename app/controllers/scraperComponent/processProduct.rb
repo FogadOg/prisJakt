@@ -1,6 +1,7 @@
 module ScraperComponent
     class ProcessProduct
-        def initialize(image, name, price, logo, category)
+        def initialize(link, image, name, price, logo, category)
+            @link=link
             @image=image
             @name=name
             @price=price
