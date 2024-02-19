@@ -11,16 +11,30 @@ class Product < ApplicationRecord
     end
 
     def saveProductSource(name, price, image, link)
+        priceNumerical, currency = extractPriceAndCurrancy(price)
         SourceOfProduct.new(
             productId: id, 
             name: name, 
-            price: price, 
+            price: priceNumerical, 
             image: image, 
-            link: link
+            link: link,
+            currency: currency
         ).save
 
         newPriceRecord(price)
 
+    end
+
+    def extractPriceAndCurrancy(string)
+        number_pattern = /\d+/
+        currency_pattern = /[a-zA-Z]+/
+
+        numbers = string.scan(number_pattern)
+        currency = string.scan(currency_pattern).first
+      
+        number = numbers.join('').to_i
+      
+        return (number / 100).to_i, currency
     end
 
     def newPriceRecord(price)
