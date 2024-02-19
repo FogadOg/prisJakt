@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
     validates :name, presence: true
     validates :image, presence: true, allow_blank: false
+    has_many :price_records, dependent: :destroy
+    has_many :source_of_products, dependent: :destroy
 
     def searchVector(otherTerm)
 
@@ -50,7 +52,7 @@ class Product < ApplicationRecord
     end
 
     def priceChange
-        priceRecords=PriceRecord.where(productId: id)
+        priceRecords=price_records
         if priceRecords == []
             return 0
         end
