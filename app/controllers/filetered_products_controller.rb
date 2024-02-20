@@ -11,6 +11,10 @@ class FileteredProductsController < ApplicationController
             search params[:search]
         end
 
+        if params[:min_price].present? || params[:max_price].present?
+            filter_by_price(params[:min_price], params[:max_price])
+        end
+
     end
     private
     # Handling multiple queries
@@ -30,6 +34,19 @@ class FileteredProductsController < ApplicationController
         end
         @products = related_products
 
+    end
+
+    def filter_by_price(min_price, max_price)
+        products_with_in_price_range=[]
+
+        @products.each do |product|
+            priceRecords=PriceRecord.where(product_id: product.id)
+
+            if priceRecords.exists?(price: min_price..max_price)
+                products_with_in_price_range.append(product)
+            end
+        end
+        @products=products_with_in_price_range
     end
 
 end
