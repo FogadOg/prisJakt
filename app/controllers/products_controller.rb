@@ -8,9 +8,7 @@ class ProductsController < ApplicationController
     def show
         product_id=params[:id]
         @product=Product.find(product_id)
-        @price_records = @product.price_records.map do |record|
-            [ record[:date].strftime("%Y-%m-%d"), record[:price].sub("\u00A0", "")]
-        end
+        @price_records = PriceRecord.where(product_id: product_id)
 
 
         @productSource=@product.source_of_products
