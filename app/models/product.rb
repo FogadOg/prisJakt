@@ -50,14 +50,6 @@ class Product < ApplicationRecord
         ).save
     end
 
-    def extractDigits(string)
-        pattern = /\d[\d\s,.]*\d|\d/
-        matches = string.scan(pattern)
-        extracted_digits = matches.join('').gsub(',', '.')
-        extracted_digits.to_i
-
-    end
-
     def priceChange
         priceRecords=price_records
         if priceRecords == []
