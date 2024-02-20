@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
         @product=Product.find(product_id)
         @price_records = PriceRecord.where(product_id: product_id)
 
-
         @productSource=@product.source_of_products
 
     end

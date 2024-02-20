@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_19_074005) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_20_160515) do
   create_table "custom_products", force: :cascade do |t|
     t.integer "userId"
     t.string "image"
@@ -22,21 +22,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_074005) do
   end
 
   create_table "price_records", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "price"
+    t.integer "product_id", null: false
+    t.integer "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
     t.string "currency"
-  end
-
-  create_table "product_sources", force: :cascade do |t|
-    t.integer "productId"
-    t.string "name"
-    t.string "price"
-    t.string "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -64,15 +55,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_074005) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-  end
-
-  create_table "websites", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "productId"
-    t.string "name"
-    t.integer "price"
-    t.string "image"
   end
 
 end
