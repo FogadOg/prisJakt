@@ -15,7 +15,7 @@ class Product < ApplicationRecord
     def saveProductSource(name, price, image, link)
         priceNumerical, currency = extractPriceAndCurrancy(price)
         SourceOfProduct.new(
-            productId: id, 
+            product_id: id, 
             name: name, 
             price: priceNumerical, 
             image: image, 
@@ -40,7 +40,14 @@ class Product < ApplicationRecord
     end
 
     def newPriceRecord(price)
-        PriceRecord.new(productId:id, price: price, date:Date.today).save
+        priceNumerical, currency = extractPriceAndCurrancy(price)
+        
+        PriceRecord.new(
+            product_id:id, 
+            price: priceNumerical, 
+            date:Date.today, 
+            currency: currency
+        ).save
     end
 
     def extractDigits(string)
@@ -58,7 +65,7 @@ class Product < ApplicationRecord
         end
 
         oldestRecord = priceRecords.order(date: :asc).first
-        oldPrice=extractDigits(oldestRecord.price)
+        oldPrice=oldestRecord.price
 
         regex = /(?:\D*)(\d{1,3}(?:[., ]\d{3})*(?:,\d+)?)(?:\D*)/
 
@@ -66,7 +73,7 @@ class Product < ApplicationRecord
 
         priceRecords.each do |record|
 
-            sumPrice+=extractDigits(record.price)
+            sumPrice+=record.price
         end
 
         avaragePrice=sumPrice/priceRecords.count
