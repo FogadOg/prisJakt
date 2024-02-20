@@ -1,3 +1,25 @@
-<div class="searchResults">
-  <%= render @products %>
+<div class="filterPage">
+  <div class="filterBox">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filter By price
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <%= form_tag(filetered_products_path, method: "get") do %>
+          <label for="min_price">Min Price:</label>
+          <%= number_field_tag :min_price, params[:min_price], step: 0.01 %>
+
+          <label for="max_price">Max Price:</label>
+          <%= number_field_tag :max_price, params[:max_price], step: 0.01 %>
+
+          <%= submit_tag "Apply" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="searchResults">
+
+    <%= render @products %>
+  </div>
 </div>
+

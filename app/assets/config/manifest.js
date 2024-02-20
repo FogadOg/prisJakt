@@ -8,4 +8,7 @@
 //= link home/details.css
 //= link home/search.css
 
+//= link filter_page/style.css
+
+
 //= link style.css
