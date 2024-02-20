@@ -52,6 +52,7 @@ class Product < ApplicationRecord
 
     def priceChange
         priceRecords=price_records
+        puts price_records.first.price, "FAROUQ"
         if priceRecords == []
             return 0
         end

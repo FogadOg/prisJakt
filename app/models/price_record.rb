@@ -1,7 +1,11 @@
 class PriceRecord < ApplicationRecord
-    validates :product_id, presence: true
-    validates :price, presence: true
-    validates :date, presence: true
     belongs_to :product
+
+    # Checks if products does exist too
+    validates_associated :product
+
+    # Checks if products does exist too
+    validates_presence_of :price
+    validates_presence_of :date
 
 end
