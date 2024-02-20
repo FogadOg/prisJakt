@@ -17,11 +17,18 @@ module ScraperComponent
         
         def startProcess()
             if Product.count.zero?                
-                Product.new(
+                startProduct = Product.new(
                     name: @name,
                     image: @image,
                     categories: [@category]
-                ).save
+                )
+                startProduct.save
+                startProduct.saveProductSource(
+                    @name,
+                    @price,
+                    @logo,
+                    @link
+                )
             end
             loopOverProductModel()
             
@@ -33,7 +40,7 @@ module ScraperComponent
                 prodcutVector = product.searchVector(@name)
                 similarity = prodcutVector.cosineSimilarity(@tfIdfVector)
                 
-                if similarity > 1
+                if similarity > 2
                     product.saveProductSource(
                         @name,
                         @price,
