@@ -8,7 +8,7 @@
 
         <% @productSource.each do |productSource| %>
             <div class="distributer">
-                <a href="" class="distributerDetails">
+                <a href="<%= productSource.link%>" class="distributerDetails">
                     <div class="details">
                         <img src="<%= productSource.image%>"/>
                         <p><%= productSource.name%></p>
