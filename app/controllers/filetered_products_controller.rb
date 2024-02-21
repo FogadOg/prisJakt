@@ -21,7 +21,7 @@ class FileteredProductsController < ApplicationController
     # Handling non exiting category
     def category(category_query)
         puts category_query
-        @products = @products.where(category: category_query)
+        @products = @products.where(categories: category_query)
     end
     def search(search_query)
         query_vector = TextProcessing::TfIdfVector.new.vectorForSearch(search_query, search_query)
