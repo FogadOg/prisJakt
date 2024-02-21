@@ -26,16 +26,13 @@
           <%= text_field_tag :search, params[:search], placeholder: "Search" %>
         <% end %>
       </div>
-      <% if session[:user_id] %>
-        <% user = User.find_by(id: session[:user_id]) %>
-        <% if user %>
-          <%= link_to 'Logout', logout_path, id: 'logout-link' %>
+<!--      Logout and login-->
+        <% if user_signed_in? %>
+          Logged in as: <%= current_user.email %>
+          <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+        <% else %>  
+          <%= link_to "Login", new_user_session_path %>
         <% end %>
-      <% end %>
-
-      <% unless session[:user_id] %>
-        <%= link_to 'Login', login_path, type: "button", class: "btn btn-primary" %>
-      <% end %>
 
     </div>
 

@@ -8,9 +8,10 @@ class ProductsController < ApplicationController
     def show
         product_id=params[:id]
         @product=Product.find(product_id)
-        @price_records = PriceRecord.where(product_id: product_id)
+        # Have to have date and price for chart
+        @price_records = @product.price_records.pluck(:date,:price)
 
-        @productSource=@product.source_of_products
+        @product_source=@product.source_of_products
 
     end
 
