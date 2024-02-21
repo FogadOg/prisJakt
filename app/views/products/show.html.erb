@@ -6,7 +6,7 @@
 
     <div class="productDistributors">
 
-        <% @productSource.each do |productSource| %>
+        <% @product_source.each do |productSource| %>
             <div class="distributer">
                 <a href="<%= productSource.link%>" class="distributerDetails">
                     <div class="details">
@@ -27,4 +27,5 @@
 
 <!-- *docs: https://chartkick.com-->
 <%= line_chart @price_records, title: "Pris historie", xtitle:"Dato", ytitle:"Pris", thousands:" ", suffix:" kr" %>
+
 
