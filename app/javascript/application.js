@@ -5,3 +5,4 @@ import "controllers"
 // Importing chart for showing price history
 import "chartkick"
 import "Chart.bundle"
+import "channels"
