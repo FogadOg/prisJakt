@@ -29,7 +29,7 @@ module ScraperComponent
                 prodcutVector = product.searchVector(@name)
                 similarity = prodcutVector.cosineSimilarity(@tfIdfVector)
                 
-                if similarity > 2
+                if isVectorSimilar(prodcutVector, 2)
                     product.saveProductSource(
                         @name,
                         @price,
@@ -45,6 +45,16 @@ module ScraperComponent
                 end
 
             end
+        end
+
+        def isVectorSimilar(vector, threshold)
+            similarity = vector.cosineSimilarity(@tfIdfVector)
+            
+            if similarity > threshold
+                return true
+            end
+            return false
+
         end
 
         def _addTermsToIdfCount(sentance)
