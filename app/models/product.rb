@@ -12,7 +12,7 @@ class Product < ApplicationRecord
         return tfIdfVector
     end
 
-    def saveProductSource(name, price, image, link)
+    def saveProductSource(price, image, link)
         priceNumerical, currency = extractPriceAndCurrancy(price)
         SourceOfProduct.new(
             product_id: id, 

@@ -24,7 +24,6 @@ module ScraperComponent
                 )
                 startProduct.save
                 startProduct.saveProductSource(
-                    @name,
                     @price,
                     @logo,
                     @link
@@ -59,7 +58,6 @@ module ScraperComponent
                         newProduct.save
                         
                         newProduct.saveProductSource(
-                            @name,
                             @price,
                             @logo,
                             @link
