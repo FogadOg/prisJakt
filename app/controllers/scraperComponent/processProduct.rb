@@ -17,17 +17,7 @@ module ScraperComponent
         
         def startProcess()
             if Product.count.zero?                
-                startProduct = Product.new(
-                    name: @name,
-                    image: @image,
-                    categories: [@category]
-                )
-                startProduct.save
-                startProduct.saveProductSource(
-                    @price,
-                    @logo,
-                    @link
-                )
+                addProductWithSource()
             end
             loopOverProductModel()
             
@@ -50,18 +40,7 @@ module ScraperComponent
                 else
                     if !isProductInDataBase(@image.value)
                         _addTermsToIdfCount(@name)
-                        newProduct = Product.new(
-                            name: @name,
-                            image: @image,
-                            categories: [@category]
-                        )
-                        newProduct.save
-                        
-                        newProduct.saveProductSource(
-                            @price,
-                            @logo,
-                            @link
-                        )
+                        addProductWithSource()
                     end
                 end
 
@@ -87,5 +66,20 @@ module ScraperComponent
             return Product.exists?(image: image)
         end        
 
+        def addProductWithSource()
+            product = Product.new(
+                name: @name,
+                image: @image,
+                categories: [@category]
+            )
+            product.save
+            product.saveProductSource(
+                @price,
+                @logo,
+                @link
+            )
+    
+        end
     end
+
 end
