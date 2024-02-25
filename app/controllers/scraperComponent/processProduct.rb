@@ -1,13 +1,14 @@
 module ScraperComponent
     class ProcessProduct
-        def initialize(link, image, name, price, logo, category)
+        def initialize(product, link, price, logo)
+            @product=product
+
+            @name=product.name
+            @image=product.image
+
             @link=link
-            @image=image
-            @name=name
             @price=price
             @logo=logo
-            @category=category
-
             
             @tfIdfVector=TextProcessing::TfIdfVector.new().vectorForSearch(@name, @name)
 
@@ -27,25 +28,27 @@ module ScraperComponent
             Product.all.each do |product|
 
                 prodcutVector = product.searchVector(@name)
-                similarity = prodcutVector.cosineSimilarity(@tfIdfVector)
+
                 
                 if isVectorSimilar(prodcutVector, 2)
-                    product.saveProductSource(
+                    @product.saveProductSource(
                         @name,
                         @price,
                         @logo,
                         @link
                     )
+                    return
 
-                else
-                    if !isProductInDataBase(@image.value)
-                        _addTermsToIdfCount(@name)
-                        addProductWithSource()
-                    end
+                elsif !isProductInDataBase(@name)
+                    _addTermsToIdfCount(@name)
+                    addProductWithSource()
+                    return
                 end
 
+                addPriceRecordForToday(product)
             end
         end
+
 
         def isVectorSimilar(vector, threshold)
             similarity = vector.cosineSimilarity(@tfIdfVector)
@@ -72,15 +75,20 @@ module ScraperComponent
       
           end
         
-        def isProductInDataBase(image)
-            return Product.exists?(image: image)
-        end        
+        def isProductInDataBase(name)
+            return Product.exists?(name: name)
+        end     
+        
+        def addPriceRecordForToday(product)
+            if PriceRecord.where(product_id: product.id).where.not(date: Date.today).exists?
+                product.newPriceRecord(@price)
+            end              
+        end
 
         def addProductWithSource()
             product = Product.new(
                 name: @name,
                 image: @image,
-                categories: [@category]
             )
             product.save
             product.saveProductSource(
