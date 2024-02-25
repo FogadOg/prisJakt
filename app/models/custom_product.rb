@@ -1,2 +1,0 @@
-class CustomProduct < ApplicationRecord
-end
