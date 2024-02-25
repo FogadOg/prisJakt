@@ -32,8 +32,13 @@ module ScraperComponent
                 image=scrapeProduct.css(imageSelector).attr("src")
                 name=scrapeProduct.css(nameSelector).text
                 price=scrapeProduct.css(priceSelector).text
+
+                product = Product.new(
+                    name: name,
+                    image: image,
+                )
                 
-                ProcessProduct.new(link, image, name, price, logo, category)
+                ProcessProduct.new(product, link, price, logo)
 
                 
             end
