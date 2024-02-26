@@ -11,16 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_02_21_174014) do
-  create_table "custom_products", force: :cascade do |t|
-    t.integer "userId"
-    t.string "image"
-    t.string "name"
-    t.string "price"
-    t.string "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "price_records", force: :cascade do |t|
     t.integer "product_id", null: false
     t.integer "price", null: false
