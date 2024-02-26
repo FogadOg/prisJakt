@@ -7,7 +7,9 @@ module ScraperComponent
             @element=htmlElement
 
         end
-
+        def element
+            return @element
+        end
         def getLogo(cssSelector)
             return @element.at_css(cssSelector).attr("href")
         end
@@ -23,26 +25,6 @@ module ScraperComponent
         def processText(text)
             textPreprocess=TextProcessing::TextProcess.new(text)
             return textPreprocess.process
-        end
-
-        def save(linkSelector, imageSelector, nameSelector, priceSelector, logo, category)
-
-            @element.each do |scrapeProduct|
-                link=scrapeProduct.css(linkSelector).attr("href")
-                image=scrapeProduct.css(imageSelector).attr("src")
-                name=scrapeProduct.css(nameSelector).text
-                price=scrapeProduct.css(priceSelector).text
-
-                product = Product.new(
-                    name: name,
-                    image: image,
-                )
-                
-                ProcessProduct.new(product, link, price, logo)
-
-                
-            end
-
         end
 
     end
