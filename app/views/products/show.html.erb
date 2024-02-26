@@ -5,23 +5,7 @@
     </div>
 
     <div class="productDistributors">
-
-        <% @product_source.each do |productSource| %>
-            <div class="distributer">
-                <a href="<%= productSource.link%>" class="distributerDetails">
-                    <div class="details">
-                        <img src="<%= productSource.image%>"/>
-                        <p><%= productSource.name%></p>
-                    </div>
-                    <div class="price">
-                        <p><%= productSource.price%></p>
-                    </div>
-                </a>
-            </div>
-        
-        <% end %>
-        
-        
+      <%= render @product.source_of_products %>
     </div>
 </div>
 
