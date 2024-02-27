@@ -37,9 +37,24 @@ class Product < ApplicationRecord
         return (number / 100).to_i, currency
     end
 
-    def newPriceRecord(price, batch_id)
+    def newPriceRecord(price, batch_id, currency=nil)
+        if currency==nil
+            processPrice(price, batch_id)        
+        else
+            PriceRecord.new(
+                product_id:id, 
+                price: price, 
+                date:Date.today, 
+                currency: currency,
+                batch: batch_id
+            ).save   
+
+        end
+    end
+
+    def processPrice(price, batch_id)
         priceNumerical, currency = extractPriceAndCurrancy(price)
-        
+            
         PriceRecord.new(
             product_id:id, 
             price: priceNumerical, 
