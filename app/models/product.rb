@@ -23,8 +23,6 @@ class Product < ApplicationRecord
             currency: currency
         ).save
 
-        newPriceRecord(price)
-
     end
 
     def extractPriceAndCurrancy(string)
