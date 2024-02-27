@@ -44,8 +44,8 @@ class Product < ApplicationRecord
             product_id:id, 
             price: priceNumerical, 
             date:Date.today, 
-            currency: currency
-            batchId: batch_id
+            currency: currency,
+            batch: batch_id
         ).save
     end
 
