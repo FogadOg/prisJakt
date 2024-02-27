@@ -1,14 +1,14 @@
 module ScraperComponent
     class ProcessProducts
-        def initialize(element, logo)
+        def initialize(element, logo, batchId)
             @element=element
             @logo=logo
 
-            @firstBatch=true
+            @batchId=batchId
 
         end
 
-        def save(linkSelector, imageSelector, nameSelector, priceSelector, logo)
+        def save(linkSelector, imageSelector, nameSelector, priceSelector)
 
             @element.each do |scrapeProduct|
                 link=scrapeProduct.css(linkSelector).attr("href")
@@ -20,7 +20,6 @@ module ScraperComponent
                     addProductWithSource(name, image, price, link)
                 end
                 startProcess(link, image, name, price)
-                @firstBatch=false
   
             end
 
@@ -40,6 +39,7 @@ module ScraperComponent
                         @logo,
                         link
                     )
+                    product.newPriceRecord(price, @batchId)
 
                     return
 
@@ -48,9 +48,6 @@ module ScraperComponent
                     addProductWithSource(name, image, price, link)
 
                     return
-                elsif @firstBatch==true
-                    product.newPriceRecord(price)
-                    
                 end
 
             end
@@ -97,6 +94,8 @@ module ScraperComponent
                 @logo,
                 link
             )
+            product.newPriceRecord(price, @batchId)
+
     
         end
     end
