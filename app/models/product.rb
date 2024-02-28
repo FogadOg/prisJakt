@@ -26,15 +26,19 @@ class Product < ApplicationRecord
     end
 
     def extractPriceAndCurrancy(string)
-        number_pattern = /\d+/
-        currency_pattern = /[a-zA-Z]+/
+        # Define a regular expression pattern to match the currency symbol and the price
+        pattern = /([^\d]+)\s*([\d, ]+)/
 
-        numbers = string.scan(number_pattern)
-        currency = string.scan(currency_pattern).first
-      
-        number = numbers.join('').to_i
-      
-        return (number / 100).to_i, currency
+        # Use match method to find the pattern in the string
+        match = string.match(pattern)
+
+        if match
+            currency = match[1].strip
+            price = match[2].gsub(/[ ,]/, '').gsub(',', '.') # Replace spaces and commas with dots
+            return price.to_i, currency
+        else
+            return nil, nil
+        end
     end
 
     def newPriceRecord(price, batch_id, currency=nil)
@@ -64,32 +68,24 @@ class Product < ApplicationRecord
         ).save
     end
 
-    def priceChange
-        priceRecords=price_records
-        
-        if priceRecords == []
-            return 0
-        end
-
-        oldestRecord = priceRecords.order(date: :asc).first
-        oldPrice=oldestRecord.price
-
-        regex = /(?:\D*)(\d{1,3}(?:[., ]\d{3})*(?:,\d+)?)(?:\D*)/
-
-        sumPrice=0
-
-        priceRecords.each do |record|
-
-            sumPrice+=record.price
-        end
-
-        avaragePrice=sumPrice/priceRecords.count
-        priceDifferance=(oldPrice-avaragePrice).to_f
-
-        differanceInPrecentage=(priceDifferance/avaragePrice)*100
-
-        return differanceInPrecentage.to_i
-
-    end
+    def price_change
+        price_records = price_records
+      
+        return 0 unless price_records && price_records.any?
+      
+        oldest_record = price_records.order(date: :asc).first
+        old_price = oldest_record.price
+      
+        sum_price = price_records.sum(:price)
+        average_price = sum_price.to_f / price_records.count
+      
+        return 0 if average_price.zero?
+      
+        price_difference = old_price - average_price
+        difference_percentage = (price_difference / average_price) * 100
+      
+        difference_percentage.to_i
+      end
+      
 
 end
