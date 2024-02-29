@@ -8,11 +8,11 @@ class ScraperController < ApplicationController
         scrape_record_id=scrape_record.id.to_i
        
         searchTerms=[
-            "air jordan 1 mid"
+            "air jordan 1"
         ]
         searchTerms.each do |searchTerm|
             ScraperComponent::Scraper::ZalandoScraper.new("https://www.zalando.no/herre/?q=", searchTerm ,scrape_record_id)
-            # ScraperComponent::Scraper::ZalandoScraper.new("https://www.zalando.no/dame/?q=",searchTerm)
+            ScraperComponent::Scraper::NikeScraper.new("https://www.nike.com/no/w?q=",searchTerm, scrape_record_id)
 
         end
 
