@@ -9,7 +9,7 @@ module ScraperComponent::Scraper
 
             pageHtml=ScraperComponent::ScraperUtil.new(@doc)
 
-            logo=pageHtml.getLogo("link[rel='apple-touch-icon']")
+            logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Zalando_201x_logo.svg/1200px-Zalando_201x_logo.svg.png"
 
             products=pageHtml.getProducts("._5qdMrS.w8MdNG.cYylcv.BaerYO._75qWlu.iOzucJ.JT3_zV._Qe9k6")
             
