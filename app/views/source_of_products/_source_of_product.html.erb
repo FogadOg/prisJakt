@@ -5,7 +5,7 @@
       <p><%= source_of_product.name%></p>
     </div>
     <div class="price">
-      <p><%= source_of_product.price%></p>
+      <p><%= number_with_delimiter(source_of_product.price, delimiter:" ")%> kr</p>
     </div>
   </a>
 </div>
