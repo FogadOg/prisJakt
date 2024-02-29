@@ -17,9 +17,8 @@ class ScrapersService
 
   def new_price_record_for_all_sources(scrape_record_id)
     Product.all.each do |product|
-      priceRecords=PriceRecord.where(product_id: product.id)
-      if priceRecords.where(batch: scrape_record_id).empty?
-        SourceOfProduct.where(product_id: product.id).each do |source_of_product|
+      if Product.price_records.where(batch: scrape_record_id).empty?
+        Product.source_of_products.each do |source_of_product|
           product.newPriceRecord(source_of_product.price, scrape_record_id, "kr")
 
         end
