@@ -1,4 +1,4 @@
-require_relative '../services/tfIdfService'
+require_relative '../../services/tfIdfService'
 
 
 module TextProcessing
