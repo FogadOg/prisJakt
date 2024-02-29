@@ -7,5 +7,5 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-require_relative '../app/services/zalando_scraper'
-ScrapeZalandoService.new.call
+require_relative '../app/services/scrapers'
+ScrapersService.new.call

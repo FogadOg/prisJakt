@@ -1,5 +1,5 @@
-class ScrapeZalandoService
-  def call(search_terms:["air jordan 1 mid"])
+class ScrapersService
+  def call(search_terms:["air jordan 1"])
 
     scrape_record = ScrapeRecord.new(date:Date.today)
     scrape_record.save
@@ -8,6 +8,8 @@ class ScrapeZalandoService
 
     search_terms.each do |searchTerm|
       ScraperComponent::Scraper::ZalandoScraper.new("https://www.zalando.no/herre/?q=", searchTerm ,scrape_record_id)
+      ScraperComponent::Scraper::NikeScraper.new("https://www.nike.com/no/w?q=",searchTerm, scrape_record_id)
+
     end
 
     new_price_record_for_all_sources(scrape_record_id)
