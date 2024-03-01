@@ -12,60 +12,19 @@ class Product < ApplicationRecord
         return tfIdfVector
     end
 
-    def saveProductSource(price, image, link)
+    def saveProductSource(price, image, link, batch_id)
         priceNumerical, currency = extractPriceAndCurrancy(price)
-        SourceOfProduct.new(
+        sourceOfProduct=SourceOfProduct.new(
             product_id: id, 
             name: name, 
             price: priceNumerical, 
             image: image, 
             link: link,
             currency: currency
-        ).save
+        )
+        sourceOfProduct.newPriceRecord(batch_id)
+        sourceOfProduct.save
 
-    end
-
-    def extractPriceAndCurrancy(string)
-        # Define a regular expression pattern to match the currency symbol and the price
-        pattern = /([^\d]+)\s*([\d, ]+)/
-
-        # Use match method to find the pattern in the string
-        match = string.match(pattern)
-
-        if match
-            currency = match[1].strip
-            price = match[2].gsub(/[ ,]/, '').gsub(',', '.') # Replace spaces and commas with dots
-            return price.to_i, currency
-        else
-            return nil, nil
-        end
-    end
-
-    def newPriceRecord(price, batch_id, currency=nil)
-        if currency==nil
-            processPrice(price, batch_id)        
-        else
-            PriceRecord.new(
-                product_id:id, 
-                price: price, 
-                date:Date.today, 
-                currency: currency,
-                batch: batch_id
-            ).save   
-
-        end
-    end
-
-    def processPrice(price, batch_id)
-        priceNumerical, currency = extractPriceAndCurrancy(price)
-            
-        PriceRecord.new(
-            product_id:id, 
-            price: priceNumerical, 
-            date:Date.today, 
-            currency: currency,
-            batch: batch_id
-        ).save
     end
 
     def price_change
