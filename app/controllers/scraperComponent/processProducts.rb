@@ -37,9 +37,9 @@ module ScraperComponent
                     product.saveProductSource(
                         price,
                         @logo,
-                        link
+                        link,
+                        @batchId
                     )
-                    product.newPriceRecord(price, @batchId)
 
                     return
 
@@ -92,10 +92,9 @@ module ScraperComponent
             product.saveProductSource(
                 price,
                 @logo,
-                link
+                link,
+                @batchId
             )
-            product.newPriceRecord(price, @batchId)
-
     
         end
     end
