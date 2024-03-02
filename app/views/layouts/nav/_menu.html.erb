@@ -41,31 +41,3 @@
 
   </div>
 </header>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const logoutLink = document.getElementById('logout-link');
-    if (logoutLink) {
-      logoutLink.addEventListener('click', function(event) {
-        event.preventDefault();
-
-        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-        fetch('/logout', {
-          method: 'DELETE',
-          headers: {
-            'X-CSRF-Token': token
-          }
-        })
-        .then(response => {
-          if (response.redirected) {
-            window.location.href = response.url;
-          }
-        })
-        .catch(error => {
-          console.error('Error logging out:', error);
-        });
-      });
-    }
-  });
-</script>
