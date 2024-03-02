@@ -7,8 +7,8 @@ class ScrapersService
     scrape_record_id=scrape_record.id.to_i
 
     search_terms.each do |searchTerm|
-      ScraperComponent::Scraper::ZalandoScraper.new("https://www.zalando.no/herre/?q=", searchTerm ,scrape_record_id)
       ScraperComponent::Scraper::NikeScraper.new("https://www.nike.com/no/w?q=",searchTerm, scrape_record_id)
+      ScraperComponent::Scraper::ZalandoScraper.new("https://www.zalando.no/herre/?q=", searchTerm ,scrape_record_id)
 
     end
 
@@ -19,7 +19,7 @@ class ScrapersService
     Product.all.each do |product|
       if product.price_records.where(batch: scrape_record_id).empty?
         product.source_of_products.each do |source_of_product|
-          product.newPriceRecord(source_of_product.price, scrape_record_id, "kr")
+          source_of_product.newPriceRecord(scrape_record_id, "kr")
 
         end
       end
