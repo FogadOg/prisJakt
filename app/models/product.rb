@@ -69,9 +69,9 @@ class Product < ApplicationRecord
     end
 
     def price_change
-        price_records = price_records
-      
-        return 0 unless price_records && price_records.any?
+        # ? Shouldn't be the smallest price change instead of average?
+
+        return 0 unless price_records&.any?
       
         oldest_record = price_records.order(date: :asc).first
         old_price = oldest_record.price
@@ -86,6 +86,11 @@ class Product < ApplicationRecord
       
         difference_percentage.to_i
       end
-      
+
+    def smallest_price
+        # Getting the smallest price if any price records
+        return 0 unless price_records&.any?
+        price_records.sort_by {|price_record| price_record.price}[0].price
+    end
 
 end
