@@ -19,6 +19,10 @@
       <!-- Search -->
       <div class="searchBarContainer">
         <%= form_with(url: filetered_products_path, method: "get", class: "searchBar") do %>
+          <% request.query_parameters.each do |key, value| %>
+            <%= hidden_field_tag key, value unless key.in?(['search']) %>
+          <% end %>
+
           <button type="submit">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -31,7 +35,9 @@
       <% if Rails.env.development? %>
         <%= form_with(url: scrape_path, method: "get") do %>
           <%= text_field_tag :search_terms, params[:search_terms], placeholder: "search_terms" %>
+
           <button type="submit">scrape</button>
+
         <% end %>
       <% end %>
 
