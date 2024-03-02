@@ -16,6 +16,7 @@
         <%= render "layouts/nav/category", name: "Sport & Hobby", sub_categories: ["Football", "American football"] %>
       </div>
 
+      <!-- Search -->
       <div class="searchBarContainer">
         <%= form_with(url: filetered_products_path, method: "get", class: "searchBar") do %>
           <button type="submit">
@@ -25,14 +26,20 @@
           </button>
           <%= text_field_tag :search, params[:search], placeholder: "Search" %>
         <% end %>
+
       </div>
-<!--      Logout and login-->
+      <% if Rails.env.development? %>
+        <%= form_with(url: scrape_path, method: "get") do %>
+          <%= text_field_tag :search_terms, params[:search_terms], placeholder: "search_terms" %>
+          <button type="submit">scrape</button>
+        <% end %>
+      <% end %>
+
+        <!-- Logout and login-->
         <% if user_signed_in? %>
           Logged in as: <%= current_user.email %>
           <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete } %>
-
-
-    <% else %>
+        <% else %>
           <%= link_to "Login", new_user_session_path %>
         <% end %>
 
