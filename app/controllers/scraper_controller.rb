@@ -11,8 +11,9 @@ class ScraperController < ApplicationController
           search_terms = ["air jordan 1"]
         end
 
-        # TODO: Get amount of products and pricerecords made?
         ScrapersService.new.call(search_terms: search_terms)
+
+        # TODO: Get amount of products and pricerecords made and show them?
         render json:{status:"200 success", searching_terms: search_terms}
     end
 end
