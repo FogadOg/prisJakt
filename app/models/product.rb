@@ -22,7 +22,7 @@ class Product < ApplicationRecord
             link: link,
             currency: currency
         )
-        sourceOfProduct.newPriceRecord(batch_id)
+        sourceOfProduct.newPriceRecord(id, batch_id)
         sourceOfProduct.save
 
     end
