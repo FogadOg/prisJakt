@@ -19,7 +19,7 @@ class ScrapersService
     Product.all.each do |product|
       if product.price_records.where(batch: scrape_record_id).empty?
         product.source_of_products.each do |source_of_product|
-          source_of_product.newPriceRecord(scrape_record_id, "kr")
+          source_of_product.newPriceRecord(scrape_record_id, scrape_record_id)
 
         end
       end
