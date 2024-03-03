@@ -5,12 +5,18 @@
         Filter By price
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
         <%= form_tag(filetered_products_path, method: "get") do %>
           <label for="min_price">Min Price:</label>
           <%= number_field_tag :min_price, params[:min_price], step: 0.01 %>
 
           <label for="max_price">Max Price:</label>
           <%= number_field_tag :max_price, params[:max_price], step: 0.01 %>
+
+
+          <% request.query_parameters.each do |key, value| %>
+            <%= hidden_field_tag key, value unless key.in?(['min_price', 'max_price']) %>
+          <% end %>
 
           <%= submit_tag "Apply" %>
         <% end %>

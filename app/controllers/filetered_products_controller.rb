@@ -40,9 +40,7 @@ class FileteredProductsController < ApplicationController
         products_with_in_price_range=[]
 
         @products.each do |product|
-            priceRecords=PriceRecord.where(product_id: product.id)
-
-            if priceRecords.exists?(price: min_price..max_price)
+            if product.price_records.exists?(price: min_price..max_price)
                 products_with_in_price_range.append(product)
             end
         end
