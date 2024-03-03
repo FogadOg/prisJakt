@@ -2,26 +2,12 @@ class SourceOfProduct < ApplicationRecord
   belongs_to :product
   validates_associated :product
 
-  def newPriceRecord(batch_id, currency=nil)
+  def newPriceRecord(product_id, batch_id)
     PriceRecord.new(
-      product_id:id, 
-      price: 500, 
+      product_id:product_id, 
+      price: price, 
       date:Date.today, 
-      currency: "currency",
-      batch: batch_id
-    ).save   
-
-    
-  end
-
-  def processPrice(batch_id)
-    # priceNumerical, currency = extractPriceAndCurrancy(price)
-        
-    PriceRecord.new(
-      product_id:id, 
-      price: 400, 
-      date:Date.today, 
-      currency: "currency",
+      currency: currency,
       batch: batch_id
     ).save
   end
