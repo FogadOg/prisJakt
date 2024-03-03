@@ -16,7 +16,7 @@ module ScraperComponent::Scraper
                 ".product-card__link-overlay",
                 ".product-card__hero-image.css-1fxh5tw",               
                 ".product-card__title",
-                ".product-price.is--current-price.css-1ydfahe")
+                ".product-price__wrapper.css-9xqpgk")
 
         end
         
