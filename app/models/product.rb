@@ -13,7 +13,7 @@ class Product < ApplicationRecord
     end
 
     def saveProductSource(price, image, link, batch_id)
-        priceNumerical, currency = extractPriceAndCurrancy(price)
+        priceNumerical, currency = extract_price_and_currency(price)
         sourceOfProduct=SourceOfProduct.new(
             product_id: id, 
             name: name, 
