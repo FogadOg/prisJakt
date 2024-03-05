@@ -23,7 +23,12 @@
       </div>
     </div>
   </div>
+
   <div class="searchResults">
+
+    <% if @products.empty? %>
+      <h1>Sorry no products found :(</h1>
+    <% end %>
 
     <%= render @products %>
   </div>
