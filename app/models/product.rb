@@ -28,6 +28,7 @@ class Product < ApplicationRecord
     end
 
     def price_change
+        # How much the price have gotten up or down by %
         # ? Shouldn't be the smallest price change instead of average?
 
         return 0 unless price_records&.any?
@@ -46,7 +47,7 @@ class Product < ApplicationRecord
         difference_percentage.to_i
       end
 
-    def smallest_price
+    def find_smallest_price
         # Getting the smallest price if any price records
         return 0 unless price_records&.any?
         price_records.sort_by {|price_record| price_record.price}[0].price
